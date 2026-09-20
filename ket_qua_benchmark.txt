@@ -1,0 +1,67 @@
+Lab 7 retrieval benchmark — Tiki return/warranty policies
+Embedding backend: text-embedding-3-small
+Chunker: HeadingChunker(chunk_size=500)
+Files loaded: 8
+Chunks loaded: 39
+Chat model: gpt-4o-mini
+=== Baseline on the first 3 policy documents (frontmatter excluded) ===
+fixed_size: count=7, avg_length=485.14
+by_sentences: count=11, avg_length=279.91
+recursive: count=11, avg_length=279.91
+
+=== Query 1: Chương trình đổi trả 365 ngày áp dụng cho ngành hàng và nhà bán nào? ===
+Run: no metadata filter
+  Top-1: score=0.7750 | doc_id=tiki-doi-tra-365 | gold_doc=True | contains_gold_text=False
+         # Chương trình đổi trả 365 ngày
+  Top-2: score=0.6302 | doc_id=tiki-doi-tra-365 | gold_doc=True | contains_gold_text=True
+         ## Phạm vi và thời điểm áp dụng - Chương trình áp dụng từ **01/11/2023**. - Áp dụng cho ngành hàng **Điện gia dụng** và **Thiết bị số** thuộc nhà bán **Tiki Trading**. - Hình thức ...
+  Top-3: score=0.5995 | doc_id=tiki-ngon-doi-tra-boi-thuong | gold_doc=False | contains_gold_text=False
+         ## Phạm vi và điều kiện đổi trả - Áp dụng cho hàng hóa ngành NGON: FMCG và thực phẩm tươi sống. - Với thực phẩm tươi sống, sữa-trứng, hàng đông lạnh hoặc hàng có hạn sử dụng dưới 3...
+Agent answer: Chương trình đổi trả 365 ngày áp dụng cho ngành hàng **Điện gia dụng** và **Thiết bị số** thuộc nhà bán **Tiki Trading** [2].
+
+=== Query 2: Khi từ chối yêu cầu đổi trả hoặc bảo hành, nhà bán Dropship cần cung cấp những loại bằng chứng hợp lệ nào? ===
+Run: no metadata filter
+  Top-1: score=0.7612 | doc_id=tiki-dropship-doi-tra-bao-hanh | gold_doc=True | contains_gold_text=False
+         # Quy trình đổi trả và bảo hành cho nhà bán Dropship
+  Top-2: score=0.6644 | doc_id=tiki-faq-doi-tra-bao-hanh | gold_doc=False | contains_gold_text=False
+         ## Dropship và hoàn tiền nhanh - Với C-return không thu hồi, nhà bán phản hồi trong **02 ngày làm việc** từ khi mã yêu cầu ghi nhận “Không thu hồi”. Với C-return có thu hồi, thời h...
+  Top-3: score=0.6604 | doc_id=tiki-dropship-doi-tra-bao-hanh | gold_doc=True | contains_gold_text=True
+         ## Điều kiện và trách nhiệm - Khi từ chối đổi/trả/bảo hành, nhà bán phải gửi bằng chứng hợp lệ trong **02 ngày làm việc** kể từ khi nhận yêu cầu hoàn tiền hoặc nhận hàng từ đối tác...
+Agent answer: Khi từ chối yêu cầu đổi/trả/bảo hành, nhà bán Dropship cần cung cấp các loại bằng chứng hợp lệ như sau: biên bản bàn giao/đồng kiểm, ảnh hoặc video đóng gói/khui mở, hay biên bản thẩm định của hãng. Thời hạn để gửi bằng chứng là trong **02 ngày làm việc** kể từ khi nhận yêu cầu hoàn tiền hoặc nhận hàng từ đối tác vận chuyển [3].
+
+=== Query 3: Nhà bán mô hình NGON cần làm gì khi hàng hoàn bị hư hỏng do lỗi vận chuyển? ===
+Run: no metadata filter
+  Top-1: score=0.6038 | doc_id=tiki-ngon-doi-tra-boi-thuong | gold_doc=True | contains_gold_text=False
+         # Đổi trả và bồi thường cho nhà bán mô hình NGON
+  Top-2: score=0.5697 | doc_id=tiki-theo-doi-rma | gold_doc=False | contains_gold_text=False
+         ## Khách hàng trả sản phẩm 1. Đơn hàng 1 giao thành công: tăng doanh thu, chi phí và lợi nhuận vào Giao dịch bán hàng. 2. Khách hàng yêu cầu trả sản phẩm. 3. Phát sinh RMA: thu lại...
+  Top-3: score=0.5667 | doc_id=tiki-fbt-doi-tra-bao-hanh | gold_doc=False | contains_gold_text=False
+         ## Hàng bảo hành Nếu không phản hồi trong thời hạn tiếp nhận khiếu nại, nhà bán được xem là đồng ý các vấn đề liên quan và mất quyền khiếu nại. Nhà bán phải đóng gói hàng đạt yêu c...
+Agent answer: Thông tin về việc nhà bán mô hình NGON cần làm gì khi hàng hoàn bị hư hỏng do lỗi vận chuyển không được tìm thấy trong các nguồn đã cung cấp.
+
+=== Query 4: Nhà bán FBT phải sắp xếp rút hàng trong thời hạn bao lâu? ===
+Run: no metadata filter
+  Top-1: score=0.6279 | doc_id=tiki-fbt-doi-tra-bao-hanh | gold_doc=True | contains_gold_text=False
+         # Quy trình đổi trả và bảo hành cho nhà bán FBT
+  Top-2: score=0.5805 | doc_id=tiki-dropship-doi-tra-bao-hanh | gold_doc=False | contains_gold_text=False
+         ## Thời hạn xử lý - Hàng **không thu hồi vật lý**: nhà bán xác nhận trong **02 ngày làm việc** từ khi yêu cầu được tạo. - Hàng **có thu hồi vật lý**: Tiki trả hàng cho nhà bán tron...
+  Top-3: score=0.5696 | doc_id=tiki-dropship-doi-tra-bao-hanh | gold_doc=False | contains_gold_text=False
+         ## Thời hạn xử lý - Khi nhà bán từ chối, Tiki kiểm tra chứng cứ và phản hồi trong **03–05 ngày làm việc**.
+Agent answer: Nhà bán FBT phải sắp xếp rút hàng trong thời hạn **05 ngày làm việc** từ khi Tiki trả hàng cho nhà bán, tùy thuộc vào vị trí [2].
+
+=== Query 5: Thời hạn đổi trả miễn phí là bao lâu? ===
+Run: no metadata filter
+  Top-1: score=0.6362 | doc_id=tiki-doi-tra-30-ngay | gold_doc=True | contains_gold_text=True
+         # Đổi trả miễn phí 30 ngày Tiki công bố quyền lợi **30 ngày đổi trả** và đổi trả miễn phí. Trang cũng nêu cam kết hoàn **200%** nếu hàng giả.  > Nguồn không nêu điều kiện, ngoại lệ...
+  Top-2: score=0.6298 | doc_id=tiki-ngon-doi-tra-boi-thuong | gold_doc=False | contains_gold_text=False
+         ## Phạm vi và điều kiện đổi trả - Áp dụng cho hàng hóa ngành NGON: FMCG và thực phẩm tươi sống. - Với thực phẩm tươi sống, sữa-trứng, hàng đông lạnh hoặc hàng có hạn sử dụng dưới 3...
+  Top-3: score=0.6119 | doc_id=tiki-ngon-doi-tra-boi-thuong | gold_doc=False | contains_gold_text=False
+         ## Phạm vi và điều kiện đổi trả - Với hàng có hạn sử dụng, có bao bì hoặc thực phẩm khô, khách hàng được yêu cầu đổi trả theo chính sách đổi trả của Tiki.
+Run: metadata_filter={'audience': 'buyer'}
+  Top-1: score=0.6362 | doc_id=tiki-doi-tra-30-ngay | gold_doc=True | contains_gold_text=True
+         # Đổi trả miễn phí 30 ngày Tiki công bố quyền lợi **30 ngày đổi trả** và đổi trả miễn phí. Trang cũng nêu cam kết hoàn **200%** nếu hàng giả.  > Nguồn không nêu điều kiện, ngoại lệ...
+  Top-2: score=0.5842 | doc_id=tiki-doi-tra-365 | gold_doc=False | contains_gold_text=False
+         ## Điều kiện và quyền lợi Với đơn hàng được xác định có lỗi kỹ thuật do nhà sản xuất, khách hàng có thể được đổi trả miễn phí tận nhà hoặc hoàn tiền 100% trong vòng **365 ngày kể t...
+  Top-3: score=0.5389 | doc_id=tiki-doi-tra-365 | gold_doc=False | contains_gold_text=False
+         ## Phạm vi và thời điểm áp dụng - Chương trình áp dụng từ **01/11/2023**. - Áp dụng cho ngành hàng **Điện gia dụng** và **Thiết bị số** thuộc nhà bán **Tiki Trading**. - Hình thức ...
+Agent answer: Thời hạn đổi trả miễn phí là 30 ngày, theo thông tin từ Tiki [1]. Ngoài ra, đối với đơn hàng có lỗi kỹ thuật do nhà sản xuất, khách hàng có thể được đổi trả miễn phí hoặc hoàn tiền 100% trong vòng 365 ngày kể từ ngày đặt hàng [2].

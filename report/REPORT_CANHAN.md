@@ -1,8 +1,8 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
-**Họ tên:** [Tên sinh viên]
-**Nhóm:** [Tên nhóm]
-**Ngày:** [Ngày nộp]
+**Họ tên:** Đỗ Trọng Bình
+**Nhóm:** FourGuys
+**Ngày:** 20/09/2026
 
 > **Nộp 1 bản / sinh viên.** Phần nhóm (lựa chọn tài liệu, thiết kế chiến lược, bộ câu hỏi đánh giá, demo) nộp chung 1 bản trong `REPORT_NHOM.md`. Chi tiết thang điểm: `docs/SCORING.md`.
 
@@ -86,14 +86,14 @@ Vượt qua bộ kiểm thử là điều kiện tính điểm phần này.
 
 | Cặp | Câu A | Câu B | Dự đoán | Điểm thực tế | Đúng? |
 |------|-----------|-----------|---------|--------------|-------|
-| 1 | | | cao / thấp | | |
-| 2 | | | cao / thấp | | |
-| 3 | | | cao / thấp | | |
-| 4 | | | cao / thấp | | |
-| 5 | | | cao / thấp | | |
+| 1 | Người mua có thể đổi trả miễn phí trong 30 ngày. | Tiki công bố quyền lợi đổi trả miễn phí trong 30 ngày. | Cao | 0,7176 | Có |
+| 2 | Nhà bán phải phản hồi yêu cầu C-return trong hai ngày làm việc. | Người bán có 02 ngày làm việc để xác nhận hoặc từ chối yêu cầu. | Cao | 0,7188 | Có |
+| 3 | Nhà bán FBT phải rút hàng trong 32 ngày làm việc. | Đội bóng thắng trận chung kết với tỉ số 2-0. | Thấp | 0,2158 | Có |
+| 4 | Hàng NGON bị hư hỏng do vận chuyển cần được báo cho Tiki trong 24 giờ. | Nhà bán cần liên hệ Tiki trong 24 giờ để yêu cầu bồi thường hàng hoàn. | Cao | 0,6654 | Có |
+| 5 | Chương trình đổi trả 365 ngày áp dụng cho Tiki Trading. | Khách hàng có thể đổi trả hoặc hoàn tiền cho hàng lỗi kỹ thuật trong 365 ngày. | Cao | 0,5766 | Có |
 
 **Kết quả nào bất ngờ nhất? Điều này nói gì về cách embeddings biểu diễn ý nghĩa?**
-> *Viết 2-3 câu:*
+> Cặp 5 cùng nói về chương trình 365 ngày nhưng score chỉ 0,5766, thấp hơn các cặp cao khác. Điều này cho thấy embedding không chỉ nhìn vào số “365 ngày” mà còn xét các chi tiết đi kèm như Tiki Trading, loại sản phẩm và lỗi kỹ thuật. Vì vậy, hai câu có chung chủ đề vẫn có thể có score vừa phải nếu trọng tâm thông tin khác nhau.
 
 ---
 
@@ -103,16 +103,16 @@ Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân củ
 
 | # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
 |---|-------|--------------------------------|-------|-----------|------------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | Chương trình đổi trả 365 ngày áp dụng cho ngành hàng và nhà bán nào? | Chunk top-1 chỉ có heading chương trình 365 ngày; thông tin phạm vi nằm ở top-2. | 0,7750 | Có, nhưng chưa đủ ở top-1 | Đúng: Điện gia dụng và Thiết bị số thuộc Tiki Trading [2]. |
+| 2 | Khi từ chối yêu cầu đổi trả hoặc bảo hành, nhà bán Dropship cần cung cấp những loại bằng chứng hợp lệ nào? | Chunk top-1 chỉ có heading Dropship; bằng chứng đầy đủ nằm ở top-3. | 0,7612 | Có, nhưng chưa đủ ở top-1 | Đúng: biên bản bàn giao/đồng kiểm; ảnh/video; biên bản thẩm định của hãng [3]. |
+| 3 | Nhà bán mô hình NGON cần làm gì khi hàng hoàn bị hư hỏng do lỗi vận chuyển? | Chunk top-1 chỉ có heading NGON, không chứa bước liên hệ Tiki trong 24 giờ/bồi thường. | 0,6038 | Không | Không tìm thấy thông tin vì top-3 không chứa section bồi thường cần thiết. |
+| 4 | Nhà bán FBT phải sắp xếp rút hàng trong thời hạn bao lâu? | Chunk top-1 chỉ có heading FBT; top-2/top-3 là mốc thời hạn của Dropship. | 0,6279 | Không | Sai: agent trả lời mốc 05 ngày/02 ngày của Dropship, không phải 32 ngày của FBT. |
+| 5 | Thời hạn đổi trả miễn phí là bao lâu? | Đổi trả miễn phí 30 ngày, kèm cam kết hoàn 200% nếu hàng giả. | 0,6362 | Có | Đúng: 30 ngày [1]; agent nêu thêm điều kiện riêng của chương trình 365 ngày [2]. |
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** __ / 5
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 3 / 5
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
-> *Viết 2-3 câu:*
+> Tôi nhận ra rằng chunk theo heading không tự động tốt hơn dù tài liệu có cấu trúc rõ ràng. Khi so sánh với FixedSize và Recursive, tôi thấy một chunk chỉ có tiêu đề có thể đứng hạng cao nhưng không chứa dữ kiện trả lời. Bài học là phải kiểm tra nội dung thật của top-3 thay vì chỉ nhìn `doc_id` hoặc score.
 
 ---
 

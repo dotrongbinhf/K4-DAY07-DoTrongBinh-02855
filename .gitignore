@@ -3,6 +3,10 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+.cache/
+ket_qua_benchmark_fixed.txt
+ket_qua_benchmark_recursive.txt
+ket_qua_benchmark_heading.txt
 
 # Environment
 .env
